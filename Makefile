@@ -6,9 +6,13 @@ ensure_symlinks: ## Symlink files to where they belong
 	./ensure_symlinks.sh
 
 pip: ## Ensure only pip packages in requirements.in are installed
-	pip3 freeze | xargs pip3 uninstall -y -q
-	pip3 install -r requirements.in --upgrade -q
-	pip3 freeze -r requirements.in > requirements.txt
+	sudo pip3 install -r requirements.in --upgrade
+	sudo pip3 freeze -r requirements.in > requirements.txt
+
+remake-pip: ## Ensure only pip packages in requirements.in are installed
+	sudo pip3 freeze | xargs sudo pip3 uninstall -y
+	sudo pip3 install -r requirements.in --upgrade
+	sudo pip3 freeze -r requirements.in > requirements.txt
 
 packages:
 	for i in $(corepackages) ; do \
