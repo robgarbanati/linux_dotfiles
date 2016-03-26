@@ -1,0 +1,25 @@
+snippet check "A CHECK macro snippet" b
+CHECK(${1:retval != -1}, "$2");
+endsnippet
+
+snippet error "A return value macro snippet" b
+    return 1;
+error:
+    return -1;
+endsnippet
+
+snippet title "Titelize in the Transformation"
+${1:a text}
+${1/\w+\s*/\u$0/g}
+endsnippet
+
+snippet random
+`#!/usr/bin/perl
+use LWP::Simple qw(get);
+my $page = get "http://www.random.org/integers/?num=1&min=1&max=100&col=1&base=10&format=plain&rnd=new";
+print $page`
+endsnippet
+
+snippet cond
+${1:some_text}${1/(o)|(t)|..*/(?1:ne)(?2:wo)/}
+endsnippet
