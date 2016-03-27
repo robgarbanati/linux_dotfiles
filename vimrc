@@ -111,11 +111,6 @@ nnoremap <C-Space> za
 let &t_SI .= "\033[5 q"
 let &t_EI .= "\033[0 q"
 
-" gnome cursor shifting
-" au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/base-16-default-dark/cursor_shape ibeam"
-" au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/base-16-default-dark/cursor_shape block"
-" au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/base-16-default-dark/cursor_shape block"
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -137,7 +132,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 "Plug 'jiangmiao/auto-pairs'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' " snippet library
-" Plug 'robgarbanati/vim-snippets' " personal snippet library
+Plug 'robgarbanati/rob-snippets' " personal snippet library
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -175,23 +170,12 @@ hi colorcolumn ctermbg=234
 set colorcolumn=100
 set cursorline
 
-" base16 Colorscheme
-" let base16colorspace=256
-" if $BACKGROUND == 'light'
-"     set background=light
-" else
-"     set background=dark
-" endif
-" colorscheme base16-default
-" set background=dark
-
-
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<C-o>"
-"let g:UltiSnipsJumpForwardTrigger="<C-b>"
 let g:UltiSnipsJumpForwardTrigger="<C-k>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsJumpBackwardTrigger="<C-j>"
+
+let g:UltiSnipsSnippetDirectories=["Ultisnips"]
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
