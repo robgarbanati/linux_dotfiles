@@ -2,6 +2,7 @@
 
 IGNORED_FILES=(
   $0
+  sources.list
   Makefile
   requirements.in
   requirements.txt
