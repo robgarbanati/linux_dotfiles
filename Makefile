@@ -1,9 +1,10 @@
-corepackages=python3-pip git tmux vim xclip
+corepackages=build-essential python3-pip git tmux vim xclip CMake
 
 all: packages pip ensure_symlinks ## Make it all!
 
 ensure_symlinks: ## Symlink files to where they belong
 	./ensure_symlinks.sh
+	xrdb -merge ~/.Xresources
 
 pip: ## Update packages in requirements.in
 	sudo pip3 install -r requirements.in --upgrade
