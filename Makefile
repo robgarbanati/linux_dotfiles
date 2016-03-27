@@ -5,6 +5,8 @@ all: packages pip ensure_symlinks ## Make it all!
 ensure_symlinks: ## Symlink files to where they belong
 	./ensure_symlinks.sh
 	xrdb -merge ~/.Xresources
+	gsettings set org.gnome.desktop.default-applications.terminal exec 'uxterm'
+
 
 pip: ## Update packages in requirements.in
 	sudo pip3 install -r requirements.in --upgrade
