@@ -1,9 +1,12 @@
-corepackages=python3-pip git tmux vim xclip lib32z1 lib32ncurses5 lib32bz2-1.0
+corepackages=build-essential CMake python3-pip git tmux vim xclip lib32z1 lib32ncurses5 lib32bz2-1.0
 
 all: packages pip ensure_symlinks ## Make it all!
 
 ensure_symlinks: ## Symlink files to where they belong
 	./ensure_symlinks.sh
+	xrdb -merge ~/.Xresources
+	gsettings set org.gnome.desktop.default-applications.terminal exec 'uxterm'
+
 
 pip: ## Update packages in requirements.in
 	sudo pip3 install -r requirements.in --upgrade
@@ -15,10 +18,12 @@ remake-pip: ## Ensure only pip packages in requirements.in are installed
 	sudo pip3 freeze -r requirements.in > requirements.txt
 
 packages:
+	sudo apt-get install aptitude -y
 	for i in $(corepackages) ; do \
 		echo installing $$i ; \
-		sudo aptitude install $$i ; \
+		sudo aptitude install $$i -y ; \
 	done
+	sudo aptitude build-dep python3-matplotlib
 
 .PHONY: help
 help:
