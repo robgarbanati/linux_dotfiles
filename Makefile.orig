@@ -1,4 +1,8 @@
-corepackages=build-essential CMake python3-pip git tmux vim xclip
+<<<<<<< HEAD
+corepackages=python3-pip git tmux vim xclip lib32z1 lib32ncurses5 lib32bz2-1.0
+=======
+corepackages=build-essential python3-pip git tmux vim xclip CMake
+>>>>>>> 80e1e0ec1deb9b62512435a1d374c865ddfa185e
 
 all: packages pip ensure_symlinks ## Make it all!
 
