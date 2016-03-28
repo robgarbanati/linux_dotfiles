@@ -1,4 +1,4 @@
-corepackages=python3-pip git tmux vim xclip
+corepackages=python3-pip git tmux vim xclip lib32z1 lib32ncurses5 lib32bz2-1.0
 
 all: packages pip ensure_symlinks ## Make it all!
 
