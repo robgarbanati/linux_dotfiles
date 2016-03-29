@@ -98,9 +98,6 @@ nnoremap <leader>v <Esc>:vsp<space>
 nnoremap <leader>q <Esc>:q<CR>
 nnoremap <leader>w <Esc>:w<CR>
 
-" Force 256 colors
-set t_Co=256
-
 " Create Blank Newlines and stay in Normal mode
 " nnoremap <leader>j o<Esc>
 " nnoremap <leader>k O<Esc>
@@ -108,6 +105,7 @@ set t_Co=256
 " Ctrl-Space will toggle folds!
 nnoremap <C-Space> za
 
+" Bar cursor in insert mode
 let &t_SI .= "\033[5 q"
 let &t_EI .= "\033[0 q"
 
@@ -145,6 +143,7 @@ Plug 'tomtom/tcomment_vim'
 " Appearance
 Plug 'nanotech/jellybeans.vim'
 Plug 'chriskempson/base16-vim'
+Plug 'altercation/vim-colors-solarized'
 
 " Man page navigation
 Plug 'bruno-/vim-man'
@@ -164,9 +163,13 @@ Plug 'sjl/vitality.vim'
 
 call plug#end()
 
-" Jellybeans Appearance
-colorscheme jellybeans
-hi colorcolumn ctermbg=234
+" Force 256 colors
+set t_Co=256
+
+" Base16 Appearance
+let base16colorspace=256  " Access colors present in 256 colorspace
+set background=dark
+colorscheme base16-default
 set colorcolumn=100
 set cursorline
 
