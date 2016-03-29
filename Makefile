@@ -9,10 +9,12 @@ ensure_symlinks: ## Symlink files to where they belong
 
 
 pip: ## Update packages in requirements.in
+	sudo aptitude build-dep python3-matplotlib -y
 	sudo pip3 install -r requirements.in --upgrade
 	sudo pip3 freeze -r requirements.in > requirements.txt
 
 remake-pip: ## Ensure only pip packages in requirements.in are installed
+	sudo aptitude build-dep python3-matplotlib -y
 	sudo pip3 freeze | xargs sudo pip3 uninstall -y
 	sudo pip3 install -r requirements.in --upgrade
 	sudo pip3 freeze -r requirements.in > requirements.txt
@@ -23,7 +25,6 @@ packages:
 		echo installing $$i ; \
 		sudo aptitude install $$i -y ; \
 	done
-	sudo aptitude build-dep python3-matplotlib
 
 .PHONY: help
 help:
