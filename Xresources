@@ -17,7 +17,7 @@ xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
 ! stop output to terminal from jumping down to bottom of scroll again
 xterm*scrollTtyOutput: false
 
-! Base16 Default
+! Base16 Default 256
 ! Scheme: Chris Kempson (http://chriskempson.com)
 
 #define base00 #181818
@@ -51,10 +51,19 @@ xterm*.color6:       base0C
 xterm*.color7:       base05
 
 xterm*.color8:       base03
-xterm*.color9:       base09
-xterm*.color10:      base01
-xterm*.color11:      base02
-xterm*.color12:      base04
-xterm*.color13:      base06
-xterm*.color14:      base0F
+xterm*.color9:       base08
+xterm*.color10:      base0B
+xterm*.color11:      base0A
+xterm*.color12:      base0D
+xterm*.color13:      base0E
+xterm*.color14:      base0C
 xterm*.color15:      base07
+
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+xterm*.color16:      base09
+xterm*.color17:      base0F
+xterm*.color18:      base01
+xterm*.color19:      base02
+xterm*.color20:      base04
+xterm*.color21:      base06
