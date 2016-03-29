@@ -10,7 +10,9 @@ setup_xterm: ## Symlink files to where they belong
 	# make uxterm default terminal
 	gsettings set org.gnome.desktop.default-applications.terminal exec 'uxterm'
 	# Change bash 256 color colorscheme to base16.
-	git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+	if [ ! -d ~/.config/base16-shell ]; then \
+		git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell ; \
+	fi
 
 pip: ## Update packages in requirements.in
 	sudo aptitude build-dep python3-matplotlib -y
