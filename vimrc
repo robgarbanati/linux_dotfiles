@@ -99,11 +99,12 @@ nnoremap <leader>q <Esc>:q<CR>
 nnoremap <leader>w <Esc>:w<CR>
 
 " Create Blank Newlines and stay in Normal mode
-nnoremap <C-o> o<Esc>
-nnoremap <C-i> O<Esc>
+nnoremap <C-h> o<Esc>
+nnoremap <C-g> O<Esc>
 
 " Toggle folds!
 nnoremap <leader>z za
+nnoremap z<space> za
 
 " Bar cursor in insert mode
 " gnome cursor shifting
