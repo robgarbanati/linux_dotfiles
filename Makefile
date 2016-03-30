@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-corepackages=build-essential CMake python3-pip git tmux vim-gtk xclip fonts-inconsolata
+corepackages=build-essential CMake python3-pip git tmux vim-gtk xclip fonts-inconsolata exuberant-ctags
 
 all: packages pip ensure_symlinks ## Make it all!
 
