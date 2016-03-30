@@ -2,6 +2,12 @@
 	name = Rob Garbanati
 	email = rob@ologicinc.com
 
+[core]
+    excludesfile = ~/.gitignore
+
+[push]
+    default = simple
+
 [difftool "kdiff3"]
     path = /usr/bin/kdiff3
     keepBackup = false
