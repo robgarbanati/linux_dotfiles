@@ -102,8 +102,8 @@ nnoremap <leader>w <Esc>:w<CR>
 nnoremap <C-o> o<Esc>
 nnoremap <C-i> O<Esc>
 
-" Ctrl-Space will toggle folds!
-nnoremap <C-Space> za
+" Toggle folds!
+nnoremap <leader>z za
 
 " Bar cursor in insert mode
 " gnome cursor shifting
