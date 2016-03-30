@@ -114,6 +114,8 @@ au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-termi
 " Leader
 vnoremap <Leader>y "+y         " Copy to system clipboard with leader + y
 
+" Clear the highlighting
+nnoremap <leader><Esc> <Esc>:noh<Enter>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
