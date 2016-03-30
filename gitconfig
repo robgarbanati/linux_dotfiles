@@ -1,14 +1,26 @@
 [user]
-	email = robgarbanati@gmail.com
-	name = Robert Garbanati
-[core]
-    excludesfile = ~/.gitignore
-[push]
-	default = simple
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+	name = Rob Garbanati
+	email = rob@ologicinc.com
+
+[difftool "kdiff3"]
+    path = /usr/bin/kdiff3
+    keepBackup = false
+    trustExitCode = false
+
+[difftool]
+    prompt = false
+ 
 [diff]
-	algorithm = patience
-[color "diff"]
-    meta = yellow bold
-    frag = magenta bold
+    tool = kdiff3
+ 
+[mergetool "kdiff3"]
+    path = /usr/bin/kdiff3
+    keepBackup = false
+    trustExitCode = false
+
+[mergetool]
+    keepBackup = false
+
+[merge]
+    tool = kdiff3
+ 
