@@ -99,15 +99,21 @@ nnoremap <leader>q <Esc>:q<CR>
 nnoremap <leader>w <Esc>:w<CR>
 
 " Create Blank Newlines and stay in Normal mode
-" nnoremap <leader>j o<Esc>
-" nnoremap <leader>k O<Esc>
+nnoremap <C-o> o<Esc>
+nnoremap <C-i> O<Esc>
 
 " Ctrl-Space will toggle folds!
 nnoremap <C-Space> za
 
 " Bar cursor in insert mode
-let &t_SI .= "\033[5 q"
-let &t_EI .= "\033[0 q"
+" gnome cursor shifting
+au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/base-16-default-dark/cursor_shape ibeam"
+au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/base-16-default-dark/cursor_shape block"
+au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/base-16-default-dark/cursor_shape block"
+
+" Leader
+vnoremap <Leader>y "+y         " Copy to system clipboard with leader + y
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
