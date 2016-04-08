@@ -1,0 +1,2 @@
+rename setup xterm
+setup_gnome should warn when bashrc etc. is already there.
