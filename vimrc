@@ -10,7 +10,7 @@ set incsearch 		    " type-ahead-find
 set expandtab		    " use spaces instead of tabs
 set smarttab		    " be smart when using tabs
 set shiftwidth=4	    " 1 tab == 2 spaces
-set tabstop=4		    " 1 tab == 2 spaces
+set tabstop=8		    " 1 tab == 2 spaces
 set ru                  " shows ruler for cursor
 set sc                  " showcmd shows incomplete commands
 set foldmethod=syntax   " set a foldmethod
@@ -58,7 +58,7 @@ let mapleader = "\<Space>"
 nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
 
 " ctags
-nnoremap <C-\> :vsp <Enter>:exec("tag ".expand("<cword>"))<Enter>zz
+nnoremap <leader>] :vsp <Enter>:exec("tag ".expand("<cword>"))<Enter>zz
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -99,8 +99,7 @@ nnoremap <leader>q <Esc>:q<CR>
 nnoremap <leader>w <Esc>:w<CR>
 
 " Create Blank Newlines and stay in Normal mode
-nnoremap <C-h> o<Esc>
-nnoremap <C-g> O<Esc>
+nnoremap <C-g> o<Esc>
 
 " Toggle folds!
 nnoremap <leader>z za
@@ -147,6 +146,7 @@ Plug 'airblade/vim-gitgutter'
 
 " Vim enhancements
 Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdcommenter'
 Plug 'tomtom/tcomment_vim'
 
 " Appearance
@@ -182,6 +182,18 @@ colorscheme base16-default
 set colorcolumn=100
 set cursorline
 
+" Nerdcommenting hotkeys
+" Nerdcommenting
+nnoremap <Leader><Leader> :call NERDComment(0,"toggle")<Enter>
+vnoremap <Leader><Leader> :call NERDComment(0,"toggle")<Enter>
+nnoremap <Leader>r :call NERDComment(0,"uncomment")<Enter>
+vnoremap <Leader>r :call NERDComment(0,"uncomment")<Enter>
+nnoremap <Leader>s :call NERDComment(0,"sexy")<Enter>
+vnoremap <Leader>s :call NERDComment(0,"sexy")<Enter>
+nnoremap <Leader>i :call NERDComment(0,"toggle")<Enter>
+vnoremap <Leader>i :call NERDComment(0,"toggle")<Enter>
+
+
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<C-o>"
 let g:UltiSnipsJumpForwardTrigger="<C-k>"
@@ -192,3 +204,16 @@ let g:UltiSnipsSnippetDirectories=["Ultisnips"]
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+" Apply YCM FixIt
+map <F9> :YcmCompleter FixIt<CR>
+
+" Convert c code to headers
+function DisplayName(name)
+  echom "Hello!  My name is:"
+  echom a:name
+endfunction
+
+",$g/^ .*\|^}\|^error/d
+",$s/) {.*/);/g
+
+set tags=./tags,./../tags,./../../tags,./../../../tags,tags
