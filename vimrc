@@ -9,21 +9,22 @@ set hlsearch 		    " highlight what you search for
 set incsearch 		    " type-ahead-find
 set expandtab		    " use spaces instead of tabs
 set smarttab		    " be smart when using tabs
-set shiftwidth=4	    " 1 tab == 2 spaces
-set tabstop=8		    " 1 tab == 2 spaces
+set shiftwidth=4	    " 1 tab input becomes 4 spaces
+set tabstop=8		    " 1 tab read is interpreted as 8 spaces
 set ru                  " shows ruler for cursor
 set sc                  " showcmd shows incomplete commands
 set foldmethod=syntax   " set a foldmethod
 set foldnestmax=1
 set splitright          " all vertical splits open to the right
 set pastetoggle=<F10>   " paste mode messes up mappings
+set textwidth=100
 
 "remove all scroll bars
 set guioptions-=r
 set guioptions-=L
 
-" slash-slash to search for visual selection
-" h/t http://vim.wikia.com/wiki/Search_for_visually_selected_text
+" slash-slash to search for visual selection h/t
+" http://vim.wikia.com/wiki/Search_for_visually_selected_text
 vnorem // y/<c-r>"<cr>
 
 " activates indenting for files
@@ -60,16 +61,15 @@ nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
 " ctags
 nnoremap <leader>] :vsp <Enter>:exec("tag ".expand("<cword>"))<Enter>zz
 
-" Search mappings: These will make it so that going to the next one in a
-" search will center on the line it's found in.
+" Search mappings: These will make it so that going to the next one in a search will center on the
+" line it's found in.
 map N Nzz
 map n nzz
 
 " Make it so there are always several lines visible above and below the cursor
 set scrolloff=10
 
-" remember things yanked in a special register, so we can delete at will
-" without concerns
+" remember things yanked in a special register, so we can delete at will without concerns
 nnoremap <Leader>p "0p
 nnoremap <Leader>P "0P
 
@@ -84,10 +84,12 @@ nnoremap B hT_
 " In my mind, p means parentheses
 onoremap p i(
 
-" Usually, when making the header file, I want to just copy the original file,
-" and append a ; to the end of each declaration and delete the body of the
-" (folded) function. This automatically does just that.
-nnoremap <Leader>h A;<Esc>jddj
+" Usually, when making the header file, I want to just copy the original file, and append a ; to the
+" end of each declaration and delete the body of the (folded) function. This automatically does just
+" that to all code below the cursor
+nnoremap <leader>h :,$g/^ \\|^}\\|^error\\|^\/\//d<CR>
+nnoremap <leader>g :,$s/) {.*/);/g<CR>
+
 
 " Make Y like D and every other cap command
 nnoremap Y y$
@@ -207,13 +209,17 @@ let g:UltiSnipsEditSplit="vertical"
 " Apply YCM FixIt
 map <F9> :YcmCompleter FixIt<CR>
 
+" Prevent ycm from ever opening preview window
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt=0
+
+" point to .ycm_extra_conf.py
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+
 " Convert c code to headers
 function DisplayName(name)
   echom "Hello!  My name is:"
   echom a:name
 endfunction
-
-",$g/^ .*\|^}\|^error/d
-",$s/) {.*/);/g
 
 set tags=./tags,./../tags,./../../tags,./../../../tags,tags
