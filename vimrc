@@ -185,7 +185,6 @@ set colorcolumn=100
 set cursorline
 
 " Nerdcommenting hotkeys
-" Nerdcommenting
 nnoremap <Leader><Leader> :call NERDComment(0,"toggle")<Enter>
 vnoremap <Leader><Leader> :call NERDComment(0,"toggle")<Enter>
 nnoremap <Leader>r :call NERDComment(0,"uncomment")<Enter>
@@ -222,10 +221,10 @@ let g:ycm_add_preview_to_completeopt=0
 " point to .ycm_extra_conf.py
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
-" Pymode linters
-let g:pymode_lint_checkers = ['flake8']
-
 " Set up language-specific settings
 au Filetype python setlocal tabstop=8		    " 1 tab read is interpreted as 8 spaces
+
+" Pymode linters
+let g:pymode_lint_checkers = ['flake8']
 
 set tags=./tags,./../tags,./../../tags,./../../../tags,tags
