@@ -206,6 +206,12 @@ let g:UltiSnipsSnippetDirectories=["Ultisnips"]
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+" YCM gotos
+let g:ycm_always_populate_location_list = 1
+nnoremap gh :YcmCompleter GoToDeclaration<CR>
+nnoremap go :lnext<CR>
+nnoremap gi :lprevious<CR>
+
 " Apply YCM FixIt
 map <F9> :YcmCompleter FixIt<CR>
 
