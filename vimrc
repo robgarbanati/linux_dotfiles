@@ -222,10 +222,10 @@ let g:ycm_add_preview_to_completeopt=0
 " point to .ycm_extra_conf.py
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
-" Convert c code to headers
-function DisplayName(name)
-  echom "Hello!  My name is:"
-  echom a:name
-endfunction
+" Pymode linters
+let g:pymode_lint_checkers = ['flake8']
+
+" Set up language-specific settings
+au Filetype python setlocal tabstop=8		    " 1 tab read is interpreted as 8 spaces
 
 set tags=./tags,./../tags,./../../tags,./../../../tags,tags
