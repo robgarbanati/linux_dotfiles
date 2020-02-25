@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-corepackages=build-essential CMake git tmux xclip exuberant-ctags python-dev python-pip python3-dev python3-pip
+corepackages=build-essential cmake git tmux xclip exuberant-ctags python-dev python-pip python3-dev python3-pip
 neovim_packages= software-properties-common python-software-properties
 
 all: packages pip ensure_symlinks ## Make it all!
@@ -15,8 +15,11 @@ setup_neovim:
 	sudo aptitude install neovim
 	sudo aptitude install python-neovim
 	sudo aptitude install python3-neovim
+
+setup_ycm:
 	pip3 install --upgrade pip
 	pip3 install neovim
+	python3 ~/.vim/bundle/YouCompleteMe/install.py --clangd-completer
 
 setup_vundle:
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
