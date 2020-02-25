@@ -1,8 +1,28 @@
 SHELL := /bin/bash
 
-corepackages=build-essential CMake python3-pip git tmux vim-gtk xclip fonts-inconsolata exuberant-ctags
+corepackages=build-essential CMake git tmux xclip exuberant-ctags python-dev python-pip python3-dev python3-pip
+neovim_packages= software-properties-common python-software-properties
 
 all: packages pip ensure_symlinks ## Make it all!
+
+setup_neovim:
+	for i in $(neovim_packages) ; do \
+		echo installing $$i ; \
+		sudo aptitude install $$i -y ; \
+	done
+	sudo add-apt-repository ppa:neovim-ppa/stable
+	sudo apt-get update
+	sudo aptitude install neovim
+	sudo aptitude install python-neovim
+	sudo aptitude install python3-neovim
+	pip3 install --upgrade pip
+	pip3 install neovim
+
+setup_vundle:
+	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+symlinks:
+	./ensure_symlinks.sh
 
 setup_xterm: ## Symlink files to where they belong
 	# link config files here to actual environment.

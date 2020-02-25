@@ -6,6 +6,7 @@ IGNORED_FILES=(
   Makefile
   requirements.in
   requirements.txt
+  bashrc
   README.md
 )
 
@@ -18,6 +19,8 @@ do
       link_to=~/.config/flake8
     elif [[ "$file" == "sshconfig" ]]; then
       link_to=~/.ssh/config
+    elif [[ "$file" == "vimrc" ]]; then
+      link_to=~/.config/nvim/init.vim
     fi
 
     if [ ! -L $link_to ]; then

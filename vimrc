@@ -27,9 +27,6 @@ set guioptions-=L
 " http://vim.wikia.com/wiki/Search_for_visually_selected_text
 vnorem // y/<c-r>"<cr>
 
-" activates indenting for files
-filetype plugin indent on
-
 " easy window navigation
 map <C-j> <C-w>j
 map <C-k> <C-w>k
@@ -122,67 +119,87 @@ nnoremap <leader><Esc> <Esc>:noh<Enter>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall | source $MYVIMRC
-endif
-call plug#begin('~/.vim/plugged')
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 
 " Code Navigation
-Plug 'rking/ag.vim'
-Plug 'kien/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'kshenoy/vim-signature'
+Plugin 'rking/ag.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kshenoy/vim-signature'
 
 " autocompletion / snippets
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-"Plug 'jiangmiao/auto-pairs'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets' " snippet library
-Plug 'robgarbanati/rob-snippets' " personal snippet library
+Plugin 'Valloric/YouCompleteMe', { 'do': './install.py' }
+"Plugin 'jiangmiao/auto-pairs'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets' " snippet library
+Plugin 'robgarbanati/rob-snippets' " personal snippet library
 
 " Git
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'airblade/vim-gitgutter'
 
 " Vim enhancements
-Plug 'scrooloose/syntastic'
-Plug 'scrooloose/nerdcommenter'
-Plug 'tomtom/tcomment_vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tomtom/tcomment_vim'
 
 " Appearance
-Plug 'nanotech/jellybeans.vim'
-Plug 'chriskempson/base16-vim'
-Plug 'altercation/vim-colors-solarized'
+"Plugin 'nanotech/jellybeans.vim'
+"Plugin 'chriskempson/base16-vim'
+"Plugin 'altercation/vim-colors-solarized'
 
 " Man page navigation
-Plug 'bruno-/vim-man'
+Plugin 'bruno-/vim-man'
 
 " Language specific
-Plug 'burnettk/vim-angular'
-Plug 'evidens/vim-twig'
-Plug 'klen/python-mode'
-Plug 'fisadev/vim-isort'
-Plug 'fatih/vim-go'
-Plug 'saltstack/salt-vim'
+"Plugin 'burnettk/vim-angular'
+"Plugin 'evidens/vim-twig'
+"Plugin 'klen/python-mode'
+"Plugin 'fisadev/vim-isort'
+"Plugin 'fatih/vim-go'
+"Plugin 'saltstack/salt-vim'
 
 " tmux
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'sjl/vitality.vim'
+"Plugin 'christoomey/vim-tmux-navigator'
+"Plugin 'tmux-plugins/vim-tmux-focus-events'
+"Plugin 'sjl/vitality.vim'
 
-call plug#end()
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
-" Force 256 colors
-set t_Co=256
+"" Force 256 colors
+"set t_Co=256
 
-" Base16 Appearance
-let base16colorspace=256  " Access colors present in 256 colorspace
-set background=dark
-colorscheme base16-default
-set colorcolumn=100
-set cursorline
+"" Base16 Appearance
+"let base16colorspace=256  " Access colors present in 256 colorspace
+"set background=dark
+"colorscheme base16-default
+"set colorcolumn=100
+"set cursorline
 
 " Nerdcommenting hotkeys
 nnoremap <Leader><Leader> :call NERDComment(0,"toggle")<Enter>
