@@ -29,3 +29,6 @@ do
     fi
   fi
 done
+
+mkdir ~/.config/nvim
+ln -s init.vim ~/.config/nvim/init.vim
