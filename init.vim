@@ -164,7 +164,7 @@ Plugin 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Vim enhancements
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'tomtom/tcomment_vim'
+"Plugin 'tomtom/tcomment_vim'
 
 " Appearance
 "Plugin 'nanotech/jellybeans.vim'
@@ -237,6 +237,7 @@ let g:ycm_add_preview_to_completeopt=0
 
 " point to .ycm_extra_conf.py
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_extra_conf_globlist = [ './.ycm_extra_conf.py']
 
 " Set up language-specific settings
 au Filetype python setlocal tabstop=8		    " 1 tab read is interpreted as 8 spaces
@@ -244,4 +245,6 @@ au Filetype python setlocal tabstop=8		    " 1 tab read is interpreted as 8 spac
 " Pymode linters
 let g:pymode_lint_checkers = ['flake8']
 
-set tags=./tags,./../tags,./../../tags,./../../../tags,tags
+source ~/.config/nvim/cscope_maps.vim
+
+"set tags=./tags,./../tags,./../../tags,./../../../tags,tags
