@@ -14,7 +14,7 @@ set tabstop=8		    " 1 tab read is interpreted as 8 spaces
 set ru                  " shows ruler for cursor
 set sc                  " showcmd shows incomplete commands
 set foldmethod=syntax   " set a foldmethod
-set foldnestmax=1
+set foldnestmax=0
 set splitright          " all vertical splits open to the right
 set pastetoggle=<F10>   " paste mode messes up mappings
 set textwidth=100
@@ -60,8 +60,8 @@ nnoremap <leader>] :vsp <Enter>:exec("tag ".expand("<cword>"))<Enter>zz
 
 " Search mappings: These will make it so that going to the next one in a search will center on the
 " line it's found in.
-map N Nzz
-map n nzz
+map N Nzt
+map n nzt
 
 " Make it so there are always several lines visible above and below the cursor
 set scrolloff=10
@@ -69,6 +69,10 @@ set scrolloff=10
 " remember things yanked in a special register, so we can delete at will without concerns
 nnoremap <Leader>p "0p
 nnoremap <Leader>P "0P
+
+" print in insert mode
+inoremap <C-t> <C-o>"0P
+inoremap <C-T> <C-o>"0p
 
 " often I want to find the next _
 onoremap W f_
@@ -201,6 +205,30 @@ filetype plugin indent on    " required
 "set colorcolumn=100
 "set cursorline
 
+" Add spaces after comment delimiters by default
+"let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_c = 1
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/* ','right': ' */' } }
+
 " Nerdcommenting hotkeys
 nnoremap <Leader><Leader> :call NERDComment(0,"toggle")<Enter>
 vnoremap <Leader><Leader> :call NERDComment(0,"toggle")<Enter>
@@ -210,6 +238,8 @@ nnoremap <Leader>s :call NERDComment(0,"sexy")<Enter>
 vnoremap <Leader>s :call NERDComment(0,"sexy")<Enter>
 nnoremap <Leader>i :call NERDComment(0,"toggle")<Enter>
 vnoremap <Leader>i :call NERDComment(0,"toggle")<Enter>
+nnoremap <Leader>o o<Esc>:call NERDComment(0,"sexy")<Enter>lla
+vnoremap <Leader>o o<Esc>:call NERDComment(0,"sexy")<Enter>lla
 
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -248,3 +278,6 @@ let g:pymode_lint_checkers = ['flake8']
 source ~/.config/nvim/cscope_maps.vim
 
 "set tags=./tags,./../tags,./../../tags,./../../../tags,tags
+"
+"set formatoptions-=cro
+"autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

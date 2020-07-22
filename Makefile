@@ -1,12 +1,15 @@
 SHELL := /bin/bash
 
-corepackages=build-essential cmake git xclip python3-dev
+#corepackages=build-essential cmake git xclip python3-dev
+corepackages=python3-dev build-essential cmake neovim cscope exuberant-ctags
 
 all: packages ycm
 
-ycm:
+neovim:
 	-git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
 	-./create_nvimrc.sh
+
+ycm:
 	python3 ~/.vim/bundle/YouCompleteMe/install.py --clangd-completer
 
 symlinks:
