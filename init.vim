@@ -10,7 +10,7 @@ set incsearch 		    " type-ahead-find
 set expandtab		    " use spaces instead of tabs
 set smarttab		    " be smart when using tabs
 set shiftwidth=4	    " 1 tab input becomes 4 spaces
-set tabstop=8		    " 1 tab read is interpreted as 8 spaces
+set tabstop=4		    " 1 tab read is interpreted as 8 spaces
 set ru                  " shows ruler for cursor
 set sc                  " showcmd shows incomplete commands
 set foldmethod=syntax   " set a foldmethod
@@ -206,7 +206,7 @@ filetype plugin indent on    " required
 "set cursorline
 
 " Add spaces after comment delimiters by default
-"let g:NERDSpaceDelims = 1
+let g:NERDSpaceDelims = 1
 
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
@@ -227,7 +227,8 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
 " Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/* ','right': ' */' } }
+"let g:NERDCustomDelimiters = { 'c': { 'left': '/* ','right': ' */' } }
+"let g:NERDCustomDelimiters = { 'cpp': { 'left': '/* ','right': ' */' } }
 
 " Nerdcommenting hotkeys
 nnoremap <Leader><Leader> :call NERDComment(0,"toggle")<Enter>
@@ -238,8 +239,12 @@ nnoremap <Leader>s :call NERDComment(0,"sexy")<Enter>
 vnoremap <Leader>s :call NERDComment(0,"sexy")<Enter>
 nnoremap <Leader>i :call NERDComment(0,"toggle")<Enter>
 vnoremap <Leader>i :call NERDComment(0,"toggle")<Enter>
-nnoremap <Leader>o o<Esc>:call NERDComment(0,"sexy")<Enter>lla
-vnoremap <Leader>o o<Esc>:call NERDComment(0,"sexy")<Enter>lla
+"nnoremap <Leader>o o<Esc>:call NERDComment(0,"sexy")<Enter>==la  <C-o>h
+"vnoremap <Leader>o o<Esc>:call NERDComment(0,"sexy")<Enter>==la  <C-o>h
+nnoremap <Leader>o o<Esc>:call NERDComment(0,"sexy")<Enter>==lla
+vnoremap <Leader>o o<Esc>:call NERDComment(0,"sexy")<Enter>==lla
+"inoremap <C-c> <Esc>o<Esc>:call NERDComment(0,"sexy")<Enter>kJ$hi  <C-o>h
+inoremap <C-c> <Esc>o<Esc>:call NERDComment(0,"sexy")<Enter>kJ$hhi
 
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -264,6 +269,9 @@ map <F9> :YcmCompleter FixIt<CR>
 " Prevent ycm from ever opening preview window
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt=0
+let g:ycm_allow_changing_updatetime = 0
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
 
 " point to .ycm_extra_conf.py
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
@@ -276,8 +284,9 @@ au Filetype python setlocal tabstop=8		    " 1 tab read is interpreted as 8 spac
 let g:pymode_lint_checkers = ['flake8']
 
 source ~/.config/nvim/cscope_maps.vim
+set csre
 
-"set tags=./tags,./../tags,./../../tags,./../../../tags,tags
+set tags=./tags,./../tags,./../../tags,./../../../tags,tags
 "
 "set formatoptions-=cro
 "autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

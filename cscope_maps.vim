@@ -44,6 +44,25 @@ if has("cscope")
     elseif $CSCOPE_DB != ""
         cs add $CSCOPE_DB
     endif
+    if filereadable("cscope_kernel_TRUE")
+        cs add ~/environment/cscope.out  
+    endif
+    if filereadable("up_one")
+        cs add ../cscope.out
+    endif
+    if filereadable("up_two")
+        cs add ../../cscope.out
+    endif
+
+    if filereadable("cscope_paths.vim")
+        source cscope_paths.vim
+    endif
+    if filereadable("../cscope_paths.vim")
+        source ../cscope_paths.vim
+    endif
+    if filereadable("../../cscope_paths.vim")
+        source ../../cscope_paths.vim
+    endif
 
     " show msg when any other cscope db added
     set cscopeverbose  
