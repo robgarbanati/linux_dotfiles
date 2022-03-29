@@ -1,7 +1,8 @@
 SHELL := /bin/bash
 
 #corepackages=build-essential cmake git xclip python3-dev
-corepackages=python3-dev build-essential cmake neovim cscope exuberant-ctags
+corepackages=build-essential cmake neovim cscope exuberant-ctags python3.9-dev python3.9-distutils python3.8-dev curl
+#corepackages=python3-dev build-essential cmake neovim cscope exuberant-ctags
 
 all: packages ycm
 
@@ -10,6 +11,7 @@ neovim:
 	-./create_nvimrc.sh
 
 ycm:
+# run VundleInstall first
 	python3 ~/.vim/bundle/YouCompleteMe/install.py --clangd-completer
 
 symlinks:
@@ -28,11 +30,26 @@ setup_ros_kinetic:
 	sudo aptitude install ros-kinetic-ros-tutorials -y
 
 packages:
+	for i in $(corepackages) ; do \
+		echo installing $$i ; \
+		sudo apt install $$i -y ; \
+	done
+
+packages_old:
 	sudo apt-get install aptitude -y
 	for i in $(corepackages) ; do \
 		echo installing $$i ; \
 		sudo aptitude install $$i -y ; \
 	done
+
+get-pip:
+	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+
+install-pip:
+	python3.9 get-pip.py
+	echo 'export PATH=~/.local/bin/:$PATH' >> ~/.bashrc
+	source ~/.bashrc
+	pip --version
 
 .PHONY: help
 help:
