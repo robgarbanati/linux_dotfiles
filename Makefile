@@ -9,9 +9,6 @@ neovim: install-pip
 	-git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
 	-./create_nvimrc.sh
 
-deno:
-	curl -fsSL https://deno.land/install.sh | sh
-
 
 symlinks:
 	-./create_nvimrc.sh
@@ -30,7 +27,7 @@ get-pip2:
 
 install-pip: deno
 	python3 get-pip.py
-	echo 'export PATH=~/.local/bin/:~/.deno/bin/:${PATH}' >> ~/.bashrc
+	echo 'export PATH=~/.local/bin/:${PATH}' >> ~/.bashrc
 	# source ~/.bashrc
 	# pip --version
 
