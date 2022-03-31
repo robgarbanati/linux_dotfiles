@@ -19,6 +19,8 @@ set splitright          " all vertical splits open to the right
 set pastetoggle=<F10>   " paste mode messes up mappings
 set textwidth=100
 
+let g:python3_host_prog = '/usr/bin/python3.8'
+
 "remove all scroll bars
 set guioptions-=r
 set guioptions-=L
@@ -231,20 +233,20 @@ let g:NERDToggleCheckAllLines = 1
 "let g:NERDCustomDelimiters = { 'cpp': { 'left': '/* ','right': ' */' } }
 
 " Nerdcommenting hotkeys
-nnoremap <Leader><Leader> :call NERDComment(0,"toggle")<Enter>
-vnoremap <Leader><Leader> :call NERDComment(0,"toggle")<Enter>
-nnoremap <Leader>r :call NERDComment(0,"uncomment")<Enter>
-vnoremap <Leader>r :call NERDComment(0,"uncomment")<Enter>
-nnoremap <Leader>s :call NERDComment(0,"sexy")<Enter>
-vnoremap <Leader>s :call NERDComment(0,"sexy")<Enter>
-nnoremap <Leader>i :call NERDComment(0,"toggle")<Enter>
-vnoremap <Leader>i :call NERDComment(0,"toggle")<Enter>
-"nnoremap <Leader>o o<Esc>:call NERDComment(0,"sexy")<Enter>==la  <C-o>h
-"vnoremap <Leader>o o<Esc>:call NERDComment(0,"sexy")<Enter>==la  <C-o>h
-nnoremap <Leader>o o<Esc>:call NERDComment(0,"sexy")<Enter>==lla
-vnoremap <Leader>o o<Esc>:call NERDComment(0,"sexy")<Enter>==lla
-"inoremap <C-c> <Esc>o<Esc>:call NERDComment(0,"sexy")<Enter>kJ$hi  <C-o>h
-inoremap <C-c> <Esc>o<Esc>:call NERDComment(0,"sexy")<Enter>kJ$hhi
+nnoremap <Leader><Leader> :call nerdcommenter#Comment(0,"toggle")<Enter>
+vnoremap <Leader><Leader> :call nerdcommenter#Comment(0,"toggle")<Enter>
+nnoremap <Leader>r :call nerdcommenter#Comment(0,"uncomment")<Enter>
+vnoremap <Leader>r :call nerdcommenter#Comment(0,"uncomment")<Enter>
+nnoremap <Leader>s :call nerdcommenter#comment(0,"sexy")<Enter>
+vnoremap <Leader>s :call nerdcommenter#comment(0,"sexy")<Enter>
+nnoremap <Leader>i :call nerdcommenter#comment(0,"toggle")<Enter>
+vnoremap <Leader>i :call nerdcommenter#comment(0,"toggle")<Enter>
+"nnoremap <Leader>o o<Esc>:call nerdcommenter#comment(0,"sexy")<Enter>==la  <C-o>h
+"vnoremap <Leader>o o<Esc>:call nerdcommenter#comment(0,"sexy")<Enter>==la  <C-o>h
+nnoremap <Leader>o o<Esc>:call nerdcommenter#comment(0,"sexy")<Enter>==lla
+vnoremap <Leader>o o<Esc>:call nerdcommenter#comment(0,"sexy")<Enter>==lla
+"inoremap <C-c> <Esc>o<Esc>:call nerdcommenter#comment(0,"sexy")<Enter>kJ$hi  <C-o>h
+inoremap <C-c> <Esc>o<Esc>:call nerdcommenter#comment(0,"sexy")<Enter>kJ$hhi
 
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
