@@ -93,7 +93,6 @@ onoremap p i(
 nnoremap <leader>h :,$g/^ \\|^}\\|^error\\|^\/\//d<CR>
 nnoremap <leader>g :,$s/) {.*/);/g<CR>
 
-
 " Make Y like D and every other cap command
 nnoremap Y y$
 
@@ -110,11 +109,6 @@ nnoremap <C-g> o<Esc>
 nnoremap <leader>z za
 nnoremap z<space> za
 
-" Bar cursor in insert mode
-" gnome cursor shifting
-au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/base-16-default-dark/cursor_shape ibeam"
-au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/base-16-default-dark/cursor_shape block"
-au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/base-16-default-dark/cursor_shape block"
 
 " Leader
 vnoremap <Leader>y "+y         " Copy to system clipboard with leader + y
@@ -131,8 +125,6 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -151,19 +143,15 @@ Plugin 'VundleVim/Vundle.vim'
 
 
 " Code Navigation
-Plugin 'Shougo/ddc.vim'
-Plugin 'vim-denops/denops.vim'
 Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kshenoy/vim-signature'
 
-" autocompletion / snippets
-" Plugin 'Valloric/YouCompleteMe', { 'do': './install.py' }
-"Plugin 'jiangmiao/auto-pairs'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets' " snippet library
-"Plugin 'robgarbanati/rob-snippets' " personal snippet library
+Plugin 'ms-jpq/coq_nvim', {'branch': 'coq'}
+" 9000+ Snippets
+Plugin 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+
 
 " Git
 "Plugin 'tpope/vim-fugitive'
@@ -174,40 +162,12 @@ Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 "Plugin 'tomtom/tcomment_vim'
 
-" Appearance
-"Plugin 'nanotech/jellybeans.vim'
-"Plugin 'chriskempson/base16-vim'
-"Plugin 'altercation/vim-colors-solarized'
-
 " Man page navigation
-Plugin 'bruno-/vim-man'
-
-" Language specific
-"Plugin 'burnettk/vim-angular'
-"Plugin 'evidens/vim-twig'
-"Plugin 'klen/python-mode'
-"Plugin 'fisadev/vim-isort'
-"Plugin 'fatih/vim-go'
-"Plugin 'saltstack/salt-vim'
-
-" tmux
-"Plugin 'christoomey/vim-tmux-navigator'
-"Plugin 'tmux-plugins/vim-tmux-focus-events'
-"Plugin 'sjl/vitality.vim'
+" Plugin 'bruno-/vim-man'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-
-"" Force 256 colors
-"set t_Co=256
-
-"" Base16 Appearance
-"let base16colorspace=256  " Access colors present in 256 colorspace
-"set background=dark
-"colorscheme base16-default
-"set colorcolumn=100
-"set cursorline
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -251,38 +211,6 @@ vnoremap <Leader>o o<Esc>:call nerdcommenter#comment(0,"sexy")<Enter>==lla
 inoremap <C-c> <Esc>o<Esc>:call nerdcommenter#comment(0,"sexy")<Enter>kJ$hhi
 
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<C-o>"
-let g:UltiSnipsJumpForwardTrigger="<C-k>"
-let g:UltiSnipsJumpBackwardTrigger="<C-j>"
-
-let g:UltiSnipsSnippetDirectories=["Ultisnips"]
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-" " YCM gotos
-" let g:ycm_always_populate_location_list = 1
-" nnoremap gh :YcmCompleter GoToDeclaration<CR>
-" nnoremap go :lnext<CR>
-" nnoremap gi :lprevious<CR>
-"
-" " Apply YCM FixIt
-" map <F9> :YcmCompleter FixIt<CR>
-"
-" " Prevent ycm from ever opening preview window
-" set completeopt-=preview
-" let g:ycm_add_preview_to_completeopt=0
-" let g:ycm_allow_changing_updatetime = 0
-" let g:ycm_enable_diagnostic_signs = 0
-" let g:ycm_enable_diagnostic_highlighting = 0
-"
-" " point to .ycm_extra_conf.py
-" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-" let g:ycm_extra_conf_globlist = [ './.ycm_extra_conf.py']
-
-" let g:denops#deno = '~/.deno/bin/deno'
-
 " Set up language-specific settings
 au Filetype python setlocal tabstop=8		    " 1 tab read is interpreted as 8 spaces
 
@@ -293,6 +221,8 @@ source ~/.config/nvim/cscope_maps.vim
 set csre
 
 set tags=./tags,./../tags,./../../tags,./../../../tags,tags
-"
-"set formatoptions-=cro
-"autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+let g:coq_settings = { 'auto_start': 'shut-up' }
+
+set formatoptions-=cro
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

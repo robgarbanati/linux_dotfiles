@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 #corepackages=xclip 
-corepackages=build-essential cmake cscope exuberant-ctags curl python3-dev
+corepackages=build-essential cmake cscope exuberant-ctags curl python3-dev python3-venv
 #corepackages=build-essential cmake neovim cscope exuberant-ctags python3.9-dev python3.9-distutils python3.8-dev curl
 
 neovim: install-pip
