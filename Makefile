@@ -4,10 +4,14 @@ SHELL := /bin/bash
 corepackages=build-essential cmake cscope exuberant-ctags curl python3-dev
 #corepackages=build-essential cmake neovim cscope exuberant-ctags python3.9-dev python3.9-distutils python3.8-dev curl
 
-neovim:
+neovim: install-pip
 	sudo snap install --beta nvim --classic
 	-git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
 	-./create_nvimrc.sh
+
+deno:
+	curl -fsSL https://deno.land/install.sh | sh
+
 
 symlinks:
 	-./create_nvimrc.sh
@@ -24,9 +28,9 @@ get-pip:
 get-pip2:
 	curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip2.py
 
-install-pip:
+install-pip: deno
 	python3 get-pip.py
-	echo 'export PATH=~/.local/bin/:${PATH}' >> ~/.bashrc
+	echo 'export PATH=~/.local/bin/:~/.deno/bin/:${PATH}' >> ~/.bashrc
 	# source ~/.bashrc
 	# pip --version
 

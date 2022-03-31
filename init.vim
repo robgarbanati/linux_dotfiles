@@ -19,7 +19,7 @@ set splitright          " all vertical splits open to the right
 set pastetoggle=<F10>   " paste mode messes up mappings
 set textwidth=100
 
-let g:python3_host_prog = '/usr/bin/python3.8'
+" let g:python3_host_prog = '/usr/bin/python3.8'
 
 "remove all scroll bars
 set guioptions-=r
@@ -151,13 +151,15 @@ Plugin 'VundleVim/Vundle.vim'
 
 
 " Code Navigation
+Plugin 'Shougo/ddc.vim'
+Plugin 'vim-denops/denops.vim'
 Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kshenoy/vim-signature'
 
 " autocompletion / snippets
-Plugin 'Valloric/YouCompleteMe', { 'do': './install.py' }
+" Plugin 'Valloric/YouCompleteMe', { 'do': './install.py' }
 "Plugin 'jiangmiao/auto-pairs'
 "Plugin 'SirVer/ultisnips'
 "Plugin 'honza/vim-snippets' " snippet library
@@ -259,25 +261,27 @@ let g:UltiSnipsSnippetDirectories=["Ultisnips"]
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-" YCM gotos
-let g:ycm_always_populate_location_list = 1
-nnoremap gh :YcmCompleter GoToDeclaration<CR>
-nnoremap go :lnext<CR>
-nnoremap gi :lprevious<CR>
+" " YCM gotos
+" let g:ycm_always_populate_location_list = 1
+" nnoremap gh :YcmCompleter GoToDeclaration<CR>
+" nnoremap go :lnext<CR>
+" nnoremap gi :lprevious<CR>
+"
+" " Apply YCM FixIt
+" map <F9> :YcmCompleter FixIt<CR>
+"
+" " Prevent ycm from ever opening preview window
+" set completeopt-=preview
+" let g:ycm_add_preview_to_completeopt=0
+" let g:ycm_allow_changing_updatetime = 0
+" let g:ycm_enable_diagnostic_signs = 0
+" let g:ycm_enable_diagnostic_highlighting = 0
+"
+" " point to .ycm_extra_conf.py
+" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+" let g:ycm_extra_conf_globlist = [ './.ycm_extra_conf.py']
 
-" Apply YCM FixIt
-map <F9> :YcmCompleter FixIt<CR>
-
-" Prevent ycm from ever opening preview window
-set completeopt-=preview
-let g:ycm_add_preview_to_completeopt=0
-let g:ycm_allow_changing_updatetime = 0
-let g:ycm_enable_diagnostic_signs = 0
-let g:ycm_enable_diagnostic_highlighting = 0
-
-" point to .ycm_extra_conf.py
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_extra_conf_globlist = [ './.ycm_extra_conf.py']
+" let g:denops#deno = '~/.deno/bin/deno'
 
 " Set up language-specific settings
 au Filetype python setlocal tabstop=8		    " 1 tab read is interpreted as 8 spaces
